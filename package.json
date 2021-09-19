@@ -1,0 +1,31 @@
+{
+  "name": "simple-comic-reader",
+  "version": "1.0.0",
+  "description": "A simple comic reader.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "watch": "tsc -w -p ./tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivyhaswell/simple-comic-reader.git"
+  },
+  "keywords": [
+    "electron",
+    "comic",
+    "reader"
+  ],
+  "author": "ivyhaswell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivyhaswell/simple-comic-reader/issues"
+  },
+  "homepage": "https://github.com/ivyhaswell/simple-comic-reader#readme",
+  "dependencies": {
+    "@types/node": "^16.9.3",
+    "electron": "^14.0.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  }
+}
