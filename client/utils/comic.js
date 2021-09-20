@@ -30,6 +30,10 @@ export class Comic {
     }
   }
 
+  static has(dir_path) {
+    return Boolean(Comic.list().find(c => c.path === dir_path))
+  }
+
   static fetch(id) {
     return Comic.list().find(b => b.id === id)
   }

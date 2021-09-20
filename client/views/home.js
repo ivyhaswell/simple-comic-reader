@@ -1,6 +1,7 @@
 const { ipcRenderer } = require('electron')
 import { Comic } from '../utils/comic.js'
 
+
 class HomePage extends HTMLElement {
 
   state = {
@@ -35,6 +36,8 @@ class HomePage extends HTMLElement {
         text-align: center;
         cursor: pointer;
         margin: 12px;
+        font-size: 44px;
+        font-weight: bold;
       }
       .comic{
         margin: 12px;
@@ -46,9 +49,9 @@ class HomePage extends HTMLElement {
         width: 180px;
         height: 240px;
         cursor: pointer;
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
-        background-position: center;
+        // background-position: center;
       }
       .comic .name{
         font-size: 15px;
@@ -64,7 +67,7 @@ class HomePage extends HTMLElement {
       </style>
       <div class="container">
         <div class="wrap">
-          <div id="add" class="add-button">添加漫画</div>
+          <div id="add" class="add-button">+</div>
           ${state.comics.map(c => `
             <div class="comic" id="${c.id}">
             <div class="image" style="background-image: url('${c.bg}')"></div>
@@ -86,11 +89,14 @@ class HomePage extends HTMLElement {
 
     add.onclick = async () => {
       const { canceled, filePaths = [] } = await ipcRenderer.invoke('open-folder')
-      if (!canceled && filePaths.length) {
-        Comic.add(Comic.new(filePaths[0]))
-        this.state.comics = Comic.list()
-        this.render()
-      }
+      if (canceled || !filePaths.length) return
+
+      const dir_path = filePaths[0]
+      if (Comic.has(dir_path)) return
+
+      Comic.add(Comic.new(filePaths[0]))
+      this.state.comics = Comic.list()
+      this.render()
     }
 
     const comics = this.shadowRoot.querySelectorAll('.comic')
