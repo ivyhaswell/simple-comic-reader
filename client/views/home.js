@@ -19,9 +19,10 @@ class HomePage extends HTMLElement {
     const template_str = (state) => `
       <style>
       .container{
-        padding: 16px 12px;
+        padding: 12px 12px;
         background-color: #ffd591;
-        min-height: 100vh;
+        min-height: calc(100vh - 24px);
+        overflow: hidden;
       }
       .wrap{
         display: flex;
