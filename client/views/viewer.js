@@ -19,7 +19,7 @@ class ViewerPage extends HTMLElement {
 
     this.render()
 
-    ipcRenderer.invoke('set-fullscreen', true)
+    // ipcRenderer.invoke('set-fullscreen', true)
   }
 
   render() {
@@ -48,10 +48,22 @@ class ViewerPage extends HTMLElement {
       border-radius: 3px
     }
 
+    .back {
+      left: 2%;
+      top: 2%;
+      position: absolute;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: hsla(0,0%,100%,.7);
+      background-color: rgba(48,48,48,.7);
+      border-radius: 3px
+    }
+
     </style>
     <div class="container">
       <img class="comic-page" src="${state.images[state.index]}" />
       <div class="indicator">${state.index + 1}/${state.images.length}</div>
+      <div class="back">返回</div>
     </div>
     `
 
@@ -78,7 +90,8 @@ class ViewerPage extends HTMLElement {
         this.prev_page()
         break
       case 'Escape':
-        ipcRenderer.invoke('set-fullscreen', false)
+        // ipcRenderer.invoke('set-fullscreen', false)
+        window.location.hash = '/home'
       default:
         break
     }
