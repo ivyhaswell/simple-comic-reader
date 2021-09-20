@@ -14,10 +14,16 @@ function listen_ipc(){
     })
     return res
   })
+  ipcMain.handle('set-fullscreen', async (e, enabled) => {
+    const window = BrowserWindow.fromWebContents(e.sender)
+    window?.setFullScreen(enabled)
+  })
 }
 
 function create_window(){
   const window = new BrowserWindow({
+    width: 1280,
+    height: 960,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true
